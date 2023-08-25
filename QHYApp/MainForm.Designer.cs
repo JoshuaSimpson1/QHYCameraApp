@@ -31,15 +31,14 @@
             connectCameras = new Button();
             staticStatusLabel = new Label();
             statusLabel = new Label();
-            staticQHYInit = new Label();
-            resourcesInitLabel = new Label();
+            camerasPanel = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // connectCameras
             // 
-            connectCameras.Location = new Point(12, 29);
+            connectCameras.Location = new Point(12, 27);
             connectCameras.Name = "connectCameras";
-            connectCameras.Size = new Size(164, 23);
+            connectCameras.Size = new Size(146, 23);
             connectCameras.TabIndex = 0;
             connectCameras.Text = "Scan For Cameras";
             connectCameras.UseVisualStyleBackColor = true;
@@ -48,7 +47,7 @@
             // staticStatusLabel
             // 
             staticStatusLabel.AutoSize = true;
-            staticStatusLabel.Location = new Point(182, 33);
+            staticStatusLabel.Location = new Point(12, 9);
             staticStatusLabel.Name = "staticStatusLabel";
             staticStatusLabel.Size = new Size(42, 15);
             staticStatusLabel.TabIndex = 1;
@@ -57,37 +56,26 @@
             // statusLabel
             // 
             statusLabel.AutoSize = true;
-            statusLabel.Location = new Point(230, 33);
+            statusLabel.Location = new Point(51, 9);
             statusLabel.Name = "statusLabel";
             statusLabel.Size = new Size(29, 15);
             statusLabel.TabIndex = 2;
             statusLabel.Text = "N/A";
             // 
-            // staticQHYInit
+            // camerasPanel
             // 
-            staticQHYInit.AutoSize = true;
-            staticQHYInit.Location = new Point(12, 11);
-            staticQHYInit.Name = "staticQHYInit";
-            staticQHYInit.Size = new Size(111, 15);
-            staticQHYInit.TabIndex = 3;
-            staticQHYInit.Text = "QHY Resources Init:";
-            // 
-            // resourcesInitLabel
-            // 
-            resourcesInitLabel.AutoSize = true;
-            resourcesInitLabel.Location = new Point(129, 11);
-            resourcesInitLabel.Name = "resourcesInitLabel";
-            resourcesInitLabel.Size = new Size(29, 15);
-            resourcesInitLabel.TabIndex = 4;
-            resourcesInitLabel.Text = "N/A";
+            camerasPanel.Dock = DockStyle.Right;
+            camerasPanel.Location = new Point(279, 0);
+            camerasPanel.Name = "camerasPanel";
+            camerasPanel.Size = new Size(776, 473);
+            camerasPanel.TabIndex = 5;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(resourcesInitLabel);
-            Controls.Add(staticQHYInit);
+            ClientSize = new Size(1055, 473);
+            Controls.Add(camerasPanel);
             Controls.Add(statusLabel);
             Controls.Add(staticStatusLabel);
             Controls.Add(connectCameras);
@@ -103,7 +91,6 @@
         private Button connectCameras;
         private Label staticStatusLabel;
         private Label statusLabel;
-        private Label staticQHYInit;
-        private Label resourcesInitLabel;
+        private FlowLayoutPanel camerasPanel;
     }
 }
