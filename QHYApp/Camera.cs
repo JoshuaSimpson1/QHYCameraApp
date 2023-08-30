@@ -8,8 +8,10 @@ namespace QHYApp
 {
     public class Camera
     {
-        int cameraIndex { get; set; }
-        StringBuilder cameraId { get; set; }
+        public int cameraIndex { get; set; }
+        public Boolean hasLiveViewOpen { get; set; }
+        public Boolean hasPropertiesViewOpen { get; set; }
+        public StringBuilder cameraId { get; set; }
         IntPtr cameraHandle { get; set; }
 
         public Camera(int cameraIndex, StringBuilder cameraId)
@@ -17,6 +19,8 @@ namespace QHYApp
             this.cameraIndex = cameraIndex;
             this.cameraId = cameraId;
             this.cameraHandle = IntPtr.Zero;
+            this.hasLiveViewOpen = false;
+            this.hasPropertiesViewOpen = false;
         }
 
         public Camera(int cameraIndex, StringBuilder cameraId, IntPtr cameraHandle)
@@ -24,6 +28,8 @@ namespace QHYApp
             this.cameraIndex = cameraIndex;
             this.cameraId = cameraId;
             this.cameraHandle = cameraHandle;
+            this.hasLiveViewOpen = false;
+            this.hasPropertiesViewOpen = false;
         }
     }
 }

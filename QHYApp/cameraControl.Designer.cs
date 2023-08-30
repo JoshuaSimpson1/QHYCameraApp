@@ -1,5 +1,7 @@
-﻿namespace QHYApp {
-    partial class cameraControl {
+﻿namespace QHYApp
+{
+    partial class CameraControl
+    {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -9,8 +11,10 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -22,7 +26,8 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             cameraPropertiesButton = new Button();
             liveViewButton = new Button();
             staticCameraIdLabel = new Label();
@@ -31,6 +36,7 @@
             // 
             // cameraPropertiesButton
             // 
+            cameraPropertiesButton.AutoSize = true;
             cameraPropertiesButton.Dock = DockStyle.Right;
             cameraPropertiesButton.Location = new Point(270, 0);
             cameraPropertiesButton.Name = "cameraPropertiesButton";
@@ -42,6 +48,7 @@
             // 
             // liveViewButton
             // 
+            liveViewButton.AutoSize = true;
             liveViewButton.Dock = DockStyle.Right;
             liveViewButton.Location = new Point(110, 0);
             liveViewButton.Name = "liveViewButton";
@@ -73,7 +80,7 @@
             cameraIdLabel.TabIndex = 3;
             cameraIdLabel.Text = "N/A";
             // 
-            // cameraControl
+            // CameraControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -83,12 +90,15 @@
             Controls.Add(staticCameraIdLabel);
             Controls.Add(liveViewButton);
             Controls.Add(cameraPropertiesButton);
+            MaximumSize = new Size(1100, 40);
             MinimumSize = new Size(430, 40);
-            Name = "cameraControl";
+            Name = "CameraControl";
             Size = new Size(430, 40);
+            Load += CameraControl_Load;
             ResumeLayout(false);
             PerformLayout();
         }
+
 
         #endregion
 
