@@ -14,6 +14,7 @@ namespace QHYApp
     {
         StringBuilder cameraId;
         int cameraIndex;
+        IntPtr cameraHandle;
 
         public CameraPropertiesForm(StringBuilder cameraId, int cameraIndex)
         {
@@ -27,5 +28,11 @@ namespace QHYApp
             MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
             mainForm.cameras[cameraIndex].hasPropertiesViewOpen = false;
         }
+
+        private void CameraPropertiesForm_Load(object sender, EventArgs e)
+        {
+            cameraIdLabel.Text = this.cameraId.ToString();
+        }
+
     }
 }
