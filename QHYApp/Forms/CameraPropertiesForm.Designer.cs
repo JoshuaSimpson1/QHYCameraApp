@@ -90,6 +90,7 @@
             // settingsPanel
             // 
             settingsPanel.AutoScroll = true;
+            settingsPanel.AutoSize = true;
             settingsPanel.BackColor = SystemColors.AppWorkspace;
             settingsPanel.Dock = DockStyle.Fill;
             settingsPanel.Location = new Point(0, 30);
@@ -111,6 +112,7 @@
             cameraIdPanel.ResumeLayout(false);
             cameraIdPanel.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

@@ -6,7 +6,6 @@ namespace QHYApp
     public partial class MainForm : Form
     {
         public Collection<Camera> cameras;
-        public Collection<CameraControl> controls;
         UInt32 numberCameras;
 
         public MainForm()

@@ -12,7 +12,7 @@ namespace QHYApp
         public Boolean hasLiveViewOpen { get; set; }
         public Boolean hasPropertiesViewOpen { get; set; }
         public StringBuilder cameraId { get; set; }
-        IntPtr cameraHandle { get; set; }
+        public IntPtr cameraHandle { get; set; }
 
         public Camera(int cameraIndex, StringBuilder cameraId)
         {

@@ -42,7 +42,7 @@ namespace QHYApp
         // using this handle. If the handle is not empty, the function succeeds.
         [DllImport("qhyccd.dll", EntryPoint = "OpenQHYCCD",
             CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
-        public unsafe static extern UInt32 OpenQHYCCD(StringBuilder id);
+        public unsafe static extern IntPtr OpenQHYCCD(StringBuilder id);
 
         // Initialize camera parameters and SDK resources. Different cameras require different
         // initialization times. QHYCCD_SUCCESS is returned when successful.

@@ -28,32 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
+            splitContainer = new SplitContainer();
             settingLabel = new Label();
+            settingTrackBar = new TrackBar();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel1.SuspendLayout();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)settingTrackBar).BeginInit();
             SuspendLayout();
+            // 
+            // splitContainer
+            // 
+            splitContainer.Dock = DockStyle.Fill;
+            splitContainer.Location = new Point(0, 0);
+            splitContainer.Name = "splitContainer";
+            // 
+            // splitContainer.Panel1
+            // 
+            splitContainer.Panel1.Controls.Add(settingLabel);
+            // 
+            // splitContainer.Panel2
+            // 
+            splitContainer.Panel2.Controls.Add(settingTrackBar);
+            splitContainer.Size = new Size(750, 40);
+            splitContainer.SplitterDistance = 250;
+            splitContainer.TabIndex = 1;
             // 
             // settingLabel
             // 
             settingLabel.AutoSize = true;
-            settingLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            settingLabel.Location = new Point(3, 2);
+            settingLabel.Dock = DockStyle.Left;
+            settingLabel.Location = new Point(0, 0);
             settingLabel.Name = "settingLabel";
-            settingLabel.Size = new Size(43, 17);
+            settingLabel.Padding = new Padding(0, 12, 0, 12);
+            settingLabel.Size = new Size(79, 39);
             settingLabel.TabIndex = 0;
-            settingLabel.Text = "label1";
+            settingLabel.Text = "Setting Name";
+            // 
+            // settingTrackBar
+            // 
+            settingTrackBar.Dock = DockStyle.Left;
+            settingTrackBar.Location = new Point(0, 0);
+            settingTrackBar.Name = "settingTrackBar";
+            settingTrackBar.Size = new Size(493, 40);
+            settingTrackBar.TabIndex = 2;
+            settingTrackBar.ValueChanged += SettingTrackBar_Changed;
             // 
             // PropertiesControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(settingLabel);
+            Controls.Add(splitContainer);
             Name = "PropertiesControl";
-            Size = new Size(750, 20);
+            Size = new Size(750, 40);
+            Load += PropertiesControl_Load;
+            splitContainer.Panel1.ResumeLayout(false);
+            splitContainer.Panel1.PerformLayout();
+            splitContainer.Panel2.ResumeLayout(false);
+            splitContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)settingTrackBar).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
+        private SplitContainer splitContainer;
         private Label settingLabel;
+        private TrackBar settingTrackBar;
     }
 }
