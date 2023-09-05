@@ -24,8 +24,7 @@ namespace QHYApp
 
         private void LiveViewForm_Close(object sender, FormClosedEventArgs e)
         {
-            MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
-            mainForm.cameras[cameraIndex].hasLiveViewOpen = false;
+            CameraCollection.cameras[cameraIndex].hasLiveViewOpen = false;
         }
     }
 }

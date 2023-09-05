@@ -24,8 +24,7 @@ namespace QHYApp
 
         private void CameraPropertiesForm_Closed(object sender, FormClosedEventArgs e)
         {
-            MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
-            mainForm.cameras[cameraIndex].hasPropertiesViewOpen = false;
+            CameraCollection.cameras[cameraIndex].hasPropertiesViewOpen = false;
         }
 
         // I will close the camera handles when the main form closes i think then.
@@ -33,23 +32,18 @@ namespace QHYApp
         // a static list of cameras in a class.
         private void CameraPropertiesForm_Load(object sender, EventArgs e)
         {
-            // Open handle to camera.
-            MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
-            if (mainForm.cameras[cameraIndex].cameraHandle == IntPtr.Zero)
-            {
-                mainForm.cameras[cameraIndex].cameraHandle = QHYLib.OpenQHYCCD(cameraId);
-            }
-
             // Load ui and controls
             cameraIdLabel.Text = this.cameraId.ToString();
+
             foreach (var setting in Enum.GetValues<CONTROL_ID>())
             {
-                if (QHYLib.IsQHYCCDControlAvailable(mainForm.cameras[cameraIndex].cameraHandle, setting) == (int)RESULT.QHYCCD_SUCCESS)
+                if (QHYLib.IsQHYCCDControlAvailable(CameraCollection.cameras[cameraIndex].cameraHandle, setting) == (int)RESULT.QHYCCD_SUCCESS)
                 {
                     PropertiesControl propertiesControl = new PropertiesControl(setting);
                     settingsPanel.Controls.Add(propertiesControl);
                 }
             }
+
         }
 
     }

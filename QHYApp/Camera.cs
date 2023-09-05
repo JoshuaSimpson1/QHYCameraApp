@@ -12,13 +12,28 @@ namespace QHYApp
         public Boolean hasLiveViewOpen { get; set; }
         public Boolean hasPropertiesViewOpen { get; set; }
         public StringBuilder cameraId { get; set; }
-        public IntPtr cameraHandle { get; set; }
+        private IntPtr _cameraHandle { get; set; }
+        public IntPtr cameraHandle
+        {
+            get
+            {
+                if (_cameraHandle == IntPtr.Zero)
+                {
+                    _cameraHandle = QHYLib.OpenQHYCCD(cameraId);
+                }
+                return _cameraHandle;
+            }
+            set
+            {
+                _cameraHandle = value;
+            }
+        }
 
         public Camera(int cameraIndex, StringBuilder cameraId)
         {
             this.cameraIndex = cameraIndex;
             this.cameraId = cameraId;
-            this.cameraHandle = IntPtr.Zero;
+
             this.hasLiveViewOpen = false;
             this.hasPropertiesViewOpen = false;
         }
@@ -31,5 +46,11 @@ namespace QHYApp
             this.hasLiveViewOpen = false;
             this.hasPropertiesViewOpen = false;
         }
+
+        public void CloseHandle()
+        {
+            QHYLib.CloseQHYCCD(cameraHandle);
+        }
+
     }
 }

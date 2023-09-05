@@ -33,7 +33,7 @@
             cameraIdPanel = new Panel();
             saveProfileButton = new Button();
             loadProfileButton = new Button();
-            settingsPanel = new Panel();
+            settingsPanel = new FlowLayoutPanel();
             cameraIdPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -90,13 +90,14 @@
             // settingsPanel
             // 
             settingsPanel.AutoScroll = true;
-            settingsPanel.AutoSize = true;
             settingsPanel.BackColor = SystemColors.AppWorkspace;
             settingsPanel.Dock = DockStyle.Fill;
+            settingsPanel.FlowDirection = FlowDirection.TopDown;
             settingsPanel.Location = new Point(0, 30);
             settingsPanel.Name = "settingsPanel";
             settingsPanel.Size = new Size(1018, 531);
             settingsPanel.TabIndex = 3;
+            settingsPanel.WrapContents = false;
             // 
             // CameraPropertiesForm
             // 
@@ -112,7 +113,6 @@
             cameraIdPanel.ResumeLayout(false);
             cameraIdPanel.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -122,6 +122,6 @@
         private Panel cameraIdPanel;
         private Button saveProfileButton;
         private Button loadProfileButton;
-        private Panel settingsPanel;
+        private FlowLayoutPanel settingsPanel;
     }
 }

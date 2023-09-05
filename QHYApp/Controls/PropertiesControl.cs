@@ -18,6 +18,7 @@ namespace QHYApp
         {
             InitializeComponent();
             this.setting = setting;
+            this.Dock = DockStyle.Fill;
         }
 
 

@@ -25,11 +25,11 @@ namespace QHYApp
             MainForm mainForm = (MainForm)FindForm();
             if (mainForm != null)
             {
-                if (!mainForm.cameras[cameraIndex].hasPropertiesViewOpen)
+                if (!CameraCollection.cameras[cameraIndex].hasPropertiesViewOpen)
                 {
                     CameraPropertiesForm propertiesViewForm = new CameraPropertiesForm(cameraId, cameraIndex);
                     propertiesViewForm.Show();
-                    mainForm.cameras[cameraIndex].hasPropertiesViewOpen = true;
+                    CameraCollection.cameras[cameraIndex].hasPropertiesViewOpen = true;
                 }
             }
         }
@@ -39,11 +39,11 @@ namespace QHYApp
             MainForm mainForm = (MainForm)FindForm();
             if (mainForm != null)
             {
-                if (!mainForm.cameras[cameraIndex].hasLiveViewOpen)
+                if (!CameraCollection.cameras[cameraIndex].hasLiveViewOpen)
                 {
                     LiveViewForm liveViewForm = new LiveViewForm(cameraId, cameraIndex);
                     liveViewForm.Show();
-                    mainForm.cameras[cameraIndex].hasLiveViewOpen = true;
+                    CameraCollection.cameras[cameraIndex].hasLiveViewOpen = true;
                 }
             }
         }

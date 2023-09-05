@@ -5,7 +5,6 @@ namespace QHYApp
 {
     public partial class MainForm : Form
     {
-        public Collection<Camera> cameras;
         UInt32 numberCameras;
 
         public MainForm()
@@ -13,7 +12,6 @@ namespace QHYApp
             InitializeComponent();
             this.FormClosing += MainForm_Close;
             this.numberCameras = 0;
-            cameras = new Collection<Camera>();
         }
 
         // When the main form is closed make sure to close the resources to the QHY Resources.
@@ -22,6 +20,7 @@ namespace QHYApp
             QHYLib.ReleaseQHYCCDResource();
         }
 
+        // Called when the form is loaded
         private void MainForm_Load(object sender, EventArgs e)
         {
             UInt32 result = QHYLib.InitQHYCCDResource();
@@ -37,36 +36,38 @@ namespace QHYApp
         // Looks for all availble cameras and rebuilds our camera collection.
         private void scanAvailableCameras()
         {
-            cameras.Clear();
-            this.Text = "QHY Camera App - Connecting Starting";
+            CameraCollection.cameras.Clear();
             numberCameras = QHYLib.ScanQHYCCD();
             this.Text = "QHY Camera App - Found " + numberCameras + " cameras";
-
 
             for (int i = 0; i < numberCameras; i++)
             {
                 StringBuilder cameraId = new StringBuilder();
                 QHYLib.GetGHYCCDId(i, cameraId);
 
-                cameras.Add(new Camera(i, cameraId));
+                CameraCollection.cameras.Add(new Camera(i, cameraId));
             }
         }
 
-        // For menu bar at top.
+        // Refreshes the camera list and update the ui
         private void refreshCamerasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             scanAvailableCameras();
+            camerasPanel.Controls.Clear();
+            fillPanelWithFoundCameras();
         }
 
+        // Adds all found cameras to the UI
         private void fillPanelWithFoundCameras()
         {
-            foreach( Camera camera in cameras)
+            foreach (Camera camera in CameraCollection.cameras)
             {
                 CameraControl cameraControl = new CameraControl(camera.cameraId, camera.cameraIndex);
                 camerasPanel.Controls.Add(cameraControl);
             }
         }
 
+        // Closes the program
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();

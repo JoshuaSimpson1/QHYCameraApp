@@ -51,8 +51,8 @@
             // splitContainer.Panel2
             // 
             splitContainer.Panel2.Controls.Add(settingTrackBar);
-            splitContainer.Size = new Size(750, 40);
-            splitContainer.SplitterDistance = 250;
+            splitContainer.Size = new Size(600, 40);
+            splitContainer.SplitterDistance = 200;
             splitContainer.TabIndex = 1;
             // 
             // settingLabel
@@ -79,9 +79,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             Controls.Add(splitContainer);
+            MinimumSize = new Size(600, 40);
             Name = "PropertiesControl";
-            Size = new Size(750, 40);
+            Size = new Size(600, 40);
             Load += PropertiesControl_Load;
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel1.PerformLayout();

@@ -32,7 +32,7 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             refreshCamerasToolStripMenuItem = new ToolStripMenuItem();
             quitToolStripMenuItem = new ToolStripMenuItem();
-            camerasPanel = new Panel();
+            camerasPanel = new FlowLayoutPanel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -68,13 +68,16 @@
             // 
             // camerasPanel
             // 
-            camerasPanel.BackColor = SystemColors.ControlDark;
-            camerasPanel.BorderStyle = BorderStyle.FixedSingle;
+            camerasPanel.AutoSize = true;
+            camerasPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            camerasPanel.BackColor = SystemColors.AppWorkspace;
             camerasPanel.Dock = DockStyle.Fill;
+            camerasPanel.FlowDirection = FlowDirection.TopDown;
             camerasPanel.Location = new Point(0, 24);
             camerasPanel.Name = "camerasPanel";
             camerasPanel.Size = new Size(1069, 538);
             camerasPanel.TabIndex = 6;
+            camerasPanel.WrapContents = false;
             // 
             // MainForm
             // 
@@ -98,6 +101,6 @@
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem quitToolStripMenuItem;
         private ToolStripMenuItem refreshCamerasToolStripMenuItem;
-        private Panel camerasPanel;
+        private FlowLayoutPanel camerasPanel;
     }
 }

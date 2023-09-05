@@ -38,7 +38,7 @@
             // 
             cameraPropertiesButton.AutoSize = true;
             cameraPropertiesButton.Dock = DockStyle.Right;
-            cameraPropertiesButton.Location = new Point(270, 0);
+            cameraPropertiesButton.Location = new Point(440, 0);
             cameraPropertiesButton.Name = "cameraPropertiesButton";
             cameraPropertiesButton.Size = new Size(160, 40);
             cameraPropertiesButton.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             liveViewButton.AutoSize = true;
             liveViewButton.Dock = DockStyle.Right;
-            liveViewButton.Location = new Point(110, 0);
+            liveViewButton.Location = new Point(280, 0);
             liveViewButton.Name = "liveViewButton";
             liveViewButton.Size = new Size(160, 40);
             liveViewButton.TabIndex = 1;
@@ -91,9 +91,9 @@
             Controls.Add(liveViewButton);
             Controls.Add(cameraPropertiesButton);
             MaximumSize = new Size(1100, 40);
-            MinimumSize = new Size(430, 40);
+            MinimumSize = new Size(600, 40);
             Name = "CameraControl";
-            Size = new Size(430, 40);
+            Size = new Size(600, 40);
             Load += CameraControl_Load;
             ResumeLayout(false);
             PerformLayout();
