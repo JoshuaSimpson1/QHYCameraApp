@@ -13,6 +13,7 @@ namespace QHYApp
         public Boolean hasPropertiesViewOpen { get; set; }
         public StringBuilder cameraId { get; set; }
         private IntPtr _cameraHandle { get; set; }
+        public String defaultSettingsFile { get; set; }
         public IntPtr cameraHandle
         {
             get

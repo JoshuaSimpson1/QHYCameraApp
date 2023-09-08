@@ -1,44 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Text;
 
-namespace QHYApp
-{
-    public partial class CameraPropertiesForm : Form
-    {
+namespace QHYApp {
+    public partial class CameraPropertiesForm : Form {
         StringBuilder cameraId;
+        String defaultFile;
         int cameraIndex;
 
-        public CameraPropertiesForm(StringBuilder cameraId, int cameraIndex)
-        {
+        public CameraPropertiesForm(StringBuilder cameraId, int cameraIndex) {
             InitializeComponent();
             this.cameraIndex = cameraIndex;
             this.cameraId = cameraId;
+            this.defaultFile = "";
         }
 
-        private void CameraPropertiesForm_Closed(object sender, FormClosedEventArgs e)
-        {
+        private void CameraPropertiesForm_Closed(object sender, FormClosedEventArgs e) {
             CameraCollection.cameras[cameraIndex].hasPropertiesViewOpen = false;
+
+            QHYApp.Properties.Settings.Default[cameraId.ToString()] = defaultFile;
+            QHYApp.Properties.Settings.Default.Save();
         }
 
-        // I will close the camera handles when the main form closes i think then.
-        // Possible memory leak. Probably going to refactor the camera list to just be
-        // a static list of cameras in a class.
-        private void CameraPropertiesForm_Load(object sender, EventArgs e)
-        {
+        // Add all the propteries controls and loads the saved profile for the cameraId
+        private void CameraPropertiesForm_Load(object sender, EventArgs e) {
             // Load ui and controls
             cameraIdLabel.Text = this.cameraId.ToString();
 
-            foreach (var setting in Enum.GetValues<CONTROL_ID>())
-            {
-                if (QHYLib.IsQHYCCDControlAvailable(CameraCollection.cameras[cameraIndex].cameraHandle, setting) == (int)RESULT.QHYCCD_SUCCESS)
-                {
+            defaultFile = (String)QHYApp.Properties.Settings.Default[cameraId.ToString()];
+            loadProfile(defaultFile);
+
+            foreach (var setting in Enum.GetValues<CONTROL_ID>()) {
+                if (QHYLib.IsQHYCCDControlAvailable(CameraCollection.cameras[cameraIndex].cameraHandle, setting) == (int)RESULT.QHYCCD_SUCCESS) {
                     PropertiesControl propertiesControl = new PropertiesControl(setting);
                     settingsPanel.Controls.Add(propertiesControl);
                 }
@@ -46,5 +37,52 @@ namespace QHYApp
 
         }
 
+        // Uses the openFileDialog to process settings for a file
+        private void loadProfileButton_Click(object sender, EventArgs e) {
+            if(openFileDialog.ShowDialog() == DialogResult.OK) {
+                loadProfile(openFileDialog.FileName);
+            }
+        }
+
+        // Attempts to load a profile from a file
+        private void loadProfile(String fileName) {
+            try {
+                IntPtr cameraHandle = CameraCollection.cameras[cameraIndex].cameraHandle;
+                var streamReader = new StreamReader(fileName);
+                foreach (var setting in Enum.GetValues<CONTROL_ID>()) {
+                    var data = streamReader.ReadLine();
+                    Double.TryParse(data, out var value);
+                    if (QHYLib.IsQHYCCDControlAvailable(cameraHandle, setting) == (int)RESULT.QHYCCD_SUCCESS) {
+                        QHYLib.SetQHYCCDParam(cameraHandle, setting, value);
+                    }
+                }
+                defaultFile = fileName;
+                streamReader.Close();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // Saves settings data from a camera
+        private void saveProfileButton_Click(object sender, EventArgs e) {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                IntPtr cameraHandle = CameraCollection.cameras[cameraIndex].cameraHandle;
+                saveFileDialog.Filter = "Settings|*.settings";
+                saveFileDialog.Title = "Save Camera Settings";
+                if(saveFileDialog.FileName != "") {
+                    try {
+                        var streamWriter = new StreamWriter(saveFileDialog.FileName);
+                        foreach(var setting in Enum.GetValues<CONTROL_ID>()) {
+                            var data = QHYLib.GetQHYCCDParam(cameraHandle, setting);
+                            streamWriter.WriteLine(data);
+                        }
+                        defaultFile = saveFileDialog.FileName;
+                        streamWriter.Close();
+                    } catch (Exception ex) {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
     }
 }
