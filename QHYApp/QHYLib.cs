@@ -187,6 +187,17 @@ namespace QHYApp
         [DllImport("qhyccd.dll", EntryPoint = "GetQHYCCDSDKVersion",
            CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
         public unsafe static extern UInt32 GetQHYCCDSDKVersion(ref UInt32 year, ref UInt32 month, ref UInt32 day, ref UInt32 subday);
+
+        // Sets the trigger function of the camera. If the param is 0, the external trigger function is disabled.
+        // NOTE: Since the developers aren't native english speakers the function in the DLL is called TRIGER NOT TRIGGER.
+        [DllImport("qhyccd.dll", EntryPoint = "SetQHYCCDTrigerMode",
+            CharSet = CharSet.Ansi, CallingConvention=CallingConvention.StdCall)]
+        public unsafe static extern UInt32 SetQHYCCDTriggerMode(IntPtr handle, UInt32 triggerMode);
+
+        // Same thing as above but just uses the true/false values
+        [DllImport("qhyccd.dll", EntryPoint = "SetQHYCCDTrigerFunction",
+            CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public unsafe static extern UInt32 SetQHYCCDTriggerFunction(IntPtr handle, bool value);
     }
 
     public enum CONTROL_ID

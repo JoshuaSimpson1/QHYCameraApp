@@ -12,7 +12,7 @@ namespace QHYApp {
             this.cameraId = cameraId;
             this.defaultFile = "";
         }
-
+        // When the form closes save our camera settings
         private void CameraPropertiesForm_Closed(object sender, FormClosedEventArgs e) {
             CameraCollection.cameras[cameraIndex].hasPropertiesViewOpen = false;
 
@@ -30,7 +30,7 @@ namespace QHYApp {
 
             foreach (var setting in Enum.GetValues<CONTROL_ID>()) {
                 if (QHYLib.IsQHYCCDControlAvailable(CameraCollection.cameras[cameraIndex].cameraHandle, setting) == (int)RESULT.QHYCCD_SUCCESS) {
-                    PropertiesControl propertiesControl = new PropertiesControl(setting);
+                    PropertiesControl propertiesControl = new PropertiesControl(setting, cameraIndex);
                     settingsPanel.Controls.Add(propertiesControl);
                 }
             }

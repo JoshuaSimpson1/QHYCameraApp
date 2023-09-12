@@ -11,11 +11,14 @@ using System.Windows.Forms;
 namespace QHYApp {
     public partial class PropertiesControl : UserControl {
         CONTROL_ID setting;
+        int cameraIndex;
+        double min, max, step;
 
-        public PropertiesControl(CONTROL_ID setting) {
+        public PropertiesControl(CONTROL_ID setting, int cameraIndex) {
             InitializeComponent();
             this.setting = setting;
             this.Dock = DockStyle.Fill;
+            this.cameraIndex = cameraIndex;
         }
 
 
@@ -27,6 +30,10 @@ namespace QHYApp {
 
         private void PropertiesControl_Load(object sender, EventArgs e) {
             this.settingLabel.Text = Enum.GetName<CONTROL_ID>(setting);
+
+            QHYLib.GetQHYCCDParamMinMaxStep(CameraCollection.cameras[cameraIndex].cameraHandle, setting, ref min, ref max, ref step);
+
+
         }
     }
 }

@@ -66,7 +66,7 @@
             settingTrackBar.Dock = DockStyle.Left;
             settingTrackBar.Location = new Point(0, 0);
             settingTrackBar.Name = "settingTrackBar";
-            settingTrackBar.Size = new Size(493, 40);
+            settingTrackBar.Size = new Size(396, 40);
             settingTrackBar.TabIndex = 2;
             settingTrackBar.ValueChanged += SettingTrackBar_Changed;
             // 
