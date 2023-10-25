@@ -102,6 +102,7 @@
             settingsPanel.Size = new Size(1018, 531);
             settingsPanel.TabIndex = 3;
             settingsPanel.WrapContents = false;
+            settingsPanel.Paint += settingsPanel_Paint;
             // 
             // openFileDialog
             // 

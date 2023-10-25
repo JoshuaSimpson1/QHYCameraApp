@@ -72,5 +72,10 @@ namespace QHYApp
         {
             Application.Exit();
         }
+
+        private void logToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

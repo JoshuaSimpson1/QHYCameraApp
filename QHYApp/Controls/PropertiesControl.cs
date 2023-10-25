@@ -24,12 +24,10 @@ namespace QHYApp
             this.cameraIndex = cameraIndex;
         }
 
-
-
         // Called when the trackbar is changed
         private void SettingTrackBar_Changed(object sender, EventArgs e)
         {
-
+            QHYLib.SetQHYCCDParam(CameraCollection.cameras[cameraIndex].cameraHandle, setting, (double)numericUpDown.Value);
         }
 
         private void PropertiesControl_Load(object sender, EventArgs e)
@@ -37,8 +35,9 @@ namespace QHYApp
             this.settingLabel.Text = Enum.GetName<CONTROL_ID>(setting);
 
             QHYLib.GetQHYCCDParamMinMaxStep(CameraCollection.cameras[cameraIndex].cameraHandle, setting, ref min, ref max, ref step);
-
-
+            numericUpDown.Maximum = (decimal)max;
+            numericUpDown.Minimum = (decimal)min;
+            numericUpDown.Increment = (decimal)step;
         }
     }
 }

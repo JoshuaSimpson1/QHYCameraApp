@@ -118,5 +118,10 @@ namespace QHYApp
                 }
             }
         }
+
+        private void settingsPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

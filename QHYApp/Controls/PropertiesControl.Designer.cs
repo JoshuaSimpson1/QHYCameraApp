@@ -30,12 +30,12 @@
         {
             splitContainer = new SplitContainer();
             settingLabel = new Label();
-            settingTrackBar = new TrackBar();
+            numericUpDown = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)settingTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown).BeginInit();
             SuspendLayout();
             // 
             // splitContainer
@@ -50,7 +50,7 @@
             // 
             // splitContainer.Panel2
             // 
-            splitContainer.Panel2.Controls.Add(settingTrackBar);
+            splitContainer.Panel2.Controls.Add(numericUpDown);
             splitContainer.Size = new Size(600, 40);
             splitContainer.SplitterDistance = 200;
             splitContainer.TabIndex = 1;
@@ -66,14 +66,14 @@
             settingLabel.TabIndex = 0;
             settingLabel.Text = "Setting Name";
             // 
-            // settingTrackBar
+            // numericUpDown
             // 
-            settingTrackBar.Dock = DockStyle.Left;
-            settingTrackBar.Location = new Point(0, 0);
-            settingTrackBar.Name = "settingTrackBar";
-            settingTrackBar.Size = new Size(396, 40);
-            settingTrackBar.TabIndex = 2;
-            settingTrackBar.ValueChanged += SettingTrackBar_Changed;
+            numericUpDown.AutoSize = true;
+            numericUpDown.Dock = DockStyle.Fill;
+            numericUpDown.Location = new Point(0, 0);
+            numericUpDown.Name = "numericUpDown";
+            numericUpDown.Size = new Size(396, 23);
+            numericUpDown.TabIndex = 0;
             // 
             // PropertiesControl
             // 
@@ -92,7 +92,7 @@
             splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)settingTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown).EndInit();
             ResumeLayout(false);
         }
 
@@ -100,6 +100,6 @@
 
         private SplitContainer splitContainer;
         private Label settingLabel;
-        private TrackBar settingTrackBar;
+        private NumericUpDown numericUpDown;
     }
 }

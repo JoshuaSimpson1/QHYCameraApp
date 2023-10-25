@@ -33,12 +33,14 @@
             refreshCamerasToolStripMenuItem = new ToolStripMenuItem();
             quitToolStripMenuItem = new ToolStripMenuItem();
             camerasPanel = new FlowLayoutPanel();
+            debugToolStripMenuItem = new ToolStripMenuItem();
+            logToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, debugToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1069, 24);
@@ -55,14 +57,14 @@
             // refreshCamerasToolStripMenuItem
             // 
             refreshCamerasToolStripMenuItem.Name = "refreshCamerasToolStripMenuItem";
-            refreshCamerasToolStripMenuItem.Size = new Size(162, 22);
+            refreshCamerasToolStripMenuItem.Size = new Size(180, 22);
             refreshCamerasToolStripMenuItem.Text = "Refresh Cameras";
             refreshCamerasToolStripMenuItem.Click += refreshCamerasToolStripMenuItem_Click;
             // 
             // quitToolStripMenuItem
             // 
             quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            quitToolStripMenuItem.Size = new Size(162, 22);
+            quitToolStripMenuItem.Size = new Size(180, 22);
             quitToolStripMenuItem.Text = "Quit";
             quitToolStripMenuItem.Click += quitToolStripMenuItem_Click;
             // 
@@ -78,6 +80,20 @@
             camerasPanel.Size = new Size(1069, 538);
             camerasPanel.TabIndex = 6;
             camerasPanel.WrapContents = false;
+            // 
+            // debugToolStripMenuItem
+            // 
+            debugToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logToolStripMenuItem });
+            debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            debugToolStripMenuItem.Size = new Size(54, 20);
+            debugToolStripMenuItem.Text = "Debug";
+            // 
+            // logToolStripMenuItem
+            // 
+            logToolStripMenuItem.Name = "logToolStripMenuItem";
+            logToolStripMenuItem.Size = new Size(180, 22);
+            logToolStripMenuItem.Text = "Log";
+            logToolStripMenuItem.Click += logToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -102,5 +118,7 @@
         private ToolStripMenuItem quitToolStripMenuItem;
         private ToolStripMenuItem refreshCamerasToolStripMenuItem;
         private FlowLayoutPanel camerasPanel;
+        private ToolStripMenuItem debugToolStripMenuItem;
+        private ToolStripMenuItem logToolStripMenuItem;
     }
 }

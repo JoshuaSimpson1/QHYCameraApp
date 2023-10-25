@@ -14,6 +14,7 @@ namespace QHYApp
         public StringBuilder cameraId { get; set; }
         private IntPtr _cameraHandle { get; set; }
         public String defaultSettingsFile { get; set; }
+        public Boolean triggerMode { get; set; }
         public IntPtr cameraHandle
         {
             get
@@ -48,6 +49,21 @@ namespace QHYApp
             this.hasPropertiesViewOpen = false;
         }
 
+        public Boolean setTriggerMode(Boolean triggerMode)
+        {
+            if (QHYLib.SetQHYCCDTriggerFunction(this.cameraHandle, triggerMode) == (int)RESULT.QHYCCD_SUCCESS)
+            {
+                this.triggerMode = triggerMode;
+                return true;
+            }
+
+            return false;
+        }
+
+        public void getImageData()
+        {
+
+        }
         public void CloseHandle()
         {
             QHYLib.CloseQHYCCD(cameraHandle);
